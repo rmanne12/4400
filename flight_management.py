@@ -1,8 +1,6 @@
 import tkinter as tk
 from tkinter import *
-import mysql.connector
-from mysql.connector import Error
-
+from stored_procedures import *
 
 window = tk.Tk()
 window.title("Flight Management System")
@@ -36,59 +34,6 @@ add_airplane_frame.grid(row=0, column=0, sticky="nsew")
 
 
 
-
-#Stored Procedures 
-def add_airplane_function(airlineID, tail_num, seat_capacity, speed, locationID, 
-                            plane_type, skids, propellers, jet_engines):
-    if airlineID == '':
-        airlineID = None
-    if tail_num == '':
-        tail_num = None
-    if seat_capacity == '':
-        seat_capacity = None
-    else:
-        seat_capacity = int(seat_capacity)
-    if speed == '':
-        speed = None
-    else:
-        speed = int(speed)
-    if locationID == '':
-        locationID = None
-    if plane_type == '':
-        plane_type = None
-    if skids == '':
-        skids = None
-    else:
-        skids = skids.lower() == 'true'
-    if propellers == '':
-        propellers = None
-    if jet_engines == '':
-        jet_engines = None
-    
-    try: 
-        # establish database connection
-        connection = mysql.connector.connect(user='root', password='Deb@tersql2003',
-                                    host='localhost', database='flight_management')
-        # create a cursor object
-        cursor = connection.cursor()
-        # call the stored procedure
-        result_args = cursor.callproc('add_airplane', args=(airlineID, tail_num, seat_capacity, 
-                                                    speed, locationID, plane_type, skids, propellers, 
-                                                    jet_engines))
-        for result in result_args:
-            print(result)            
-    except Error as e:
-        print("Error occured", e)
-    finally:
-        if (connection.is_connected()):
-            cursor.close()
-            connection.close()
-            print("connection closed")
-    
-
-
-
-
 # Create the buttons and add them to the grid
 btn1 = tk.Button(front_page, text="Airplanes", command=lambda: airplane_page.tkraise(), width=30, height=10)
 btn1.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
@@ -117,8 +62,6 @@ btn8.grid(row=3, column=1, padx=10, pady=10, sticky="nsew")
 
 airplane_page_title = Label(airplane_page, text='Airplanes Page')
 airplane_page_title.pack(pady=20)
-
-
 goto_add_airplane = tk.Button(airplane_page, text="add_airplane()", command=lambda: add_airplane_frame.tkraise(), width=30, height=10)
 goto_add_airplane.pack()
 airplane_back_button = tk.Button(airplane_page, text="Back", command=lambda: front_page.tkraise(), width=30, height=10)
