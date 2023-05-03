@@ -244,7 +244,8 @@ grant_pilot_license_license_entry.grid(row=2, column=1)
 grant_pilot_license_frame_back_btn = tk.Button(grant_pilot_license_frame, text="Back", command=lambda: pilots_page.tkraise(), width=15, height=5)
 grant_pilot_license_frame_back_btn.grid(row=3, column=1)  
 
-grant_pilot_license_frame_btn = tk.Button(grant_pilot_license_frame, text="Commit",  width=15, height=5)
+grant_pilot_license_frame_btn = tk.Button(grant_pilot_license_frame, text="Commit", command=lambda: grant_pilot_license_function(grant_pilot_license_personID_entry.get(),
+grant_pilot_license_license_entry.get()), width=15, height=5)
 grant_pilot_license_frame_btn.grid(row=3, column=2) 
 ########################################################################
 
@@ -272,7 +273,9 @@ assign_pilot_personID_entry.grid(row=2, column=1)
 grant_pilot_license_frame_back_btn = tk.Button(assign_pilot_frame, text="Back", command=lambda: pilots_page.tkraise(), width=15, height=5)
 grant_pilot_license_frame_back_btn.grid(row=3, column=1)  
 
-grant_pilot_license_frame_btn = tk.Button(assign_pilot_frame, text="Commit", width=15, height=5)
+grant_pilot_license_frame_btn = tk.Button(assign_pilot_frame, text="Commit", command=lambda: assign_pilot_function(
+    assign_pilot_flightID_entry.get(), assign_pilot_personID_entry.get()
+), width=15, height=5)
 grant_pilot_license_frame_btn.grid(row=3, column=2) 
 ########################################################################
 
@@ -293,7 +296,9 @@ recycle_crew_flightID_entry.grid(row=1, column=1)
 grant_pilot_license_frame_back_btn = tk.Button(recycle_crew_frame, text="Back", command=lambda: pilots_page.tkraise(), width=15, height=5)
 grant_pilot_license_frame_back_btn.grid(row=2, column=1)  
 
-recycle_crew_frame_btn = tk.Button(recycle_crew_frame, text="Commit", width=15, height=5)
+recycle_crew_frame_btn = tk.Button(recycle_crew_frame, text="Commit", command=lambda: recycle_crew_function(
+    recycle_crew_flightID_entry.get()
+), width=15, height=5)
 recycle_crew_frame_btn.grid(row=2, column=2) 
 ########################################################################
 
@@ -314,7 +319,9 @@ remove_pilot_role_personID_entry.grid(row=1, column=1)
 remove_pilot_role_frame_back_btn = tk.Button(remove_pilot_role_frame, text="Back", command=lambda: pilots_page.tkraise(), width=15, height=5)
 remove_pilot_role_frame_back_btn.grid(row=2, column=1)  
 
-remove_pilot_role_frame_btn = tk.Button(remove_pilot_role_frame, text="Commit", width=15, height=5)
+remove_pilot_role_frame_btn = tk.Button(remove_pilot_role_frame, text="Commit", command=lambda: remove_pilot_role_function(
+    remove_pilot_role_personID_entry.get()
+), width=15, height=5)
 remove_pilot_role_frame_btn.grid(row=2, column=2)
 ########################################################################
 
@@ -387,7 +394,11 @@ add_person_miles_entry.grid(row=4, column=3)
 add_airplane_back_button = tk.Button(add_person_frame, text="Back", command=lambda: people_page.tkraise(), width=15, height=5)
 add_airplane_back_button.grid(row=6, column=1)                                 
 
-add_person_frame_btn = tk.Button(add_person_frame, text="Commit", width=15, height=5)
+add_person_frame_btn = tk.Button(add_person_frame, text="Commit", command=lambda: add_person_function(
+    add_person_personID_entry.get(), add_person_first_name_entry.get(), add_person_last_name_entry.get(),
+    add_person_locationID_entry.get(), add_person_taxID_entry.get(), add_person_experience_entry.get(),
+    add_person_flying_airline_entry.get(), add_person_flying_tail_entry.get(), add_person_miles_entry.get()
+), width=15, height=5)
 add_person_frame_btn.grid(row=6, column=2)
 ########################################################################
 
@@ -409,7 +420,9 @@ passengers_board_flightID_entry.grid(row=1, column=1)
 passengers_board_frame_back_btn = tk.Button(passengers_board_frame, text="Back", command=lambda: people_page.tkraise(), width=15, height=5)
 passengers_board_frame_back_btn.grid(row=2, column=1)  
 
-passengers_board_frame_btn = tk.Button(passengers_board_frame, text="Commit", width=15, height=5)
+passengers_board_frame_btn = tk.Button(passengers_board_frame, text="Commit", command=lambda: passengers_board_function(
+    passengers_board_flightID_entry.get()
+), width=15, height=5)
 passengers_board_frame_btn.grid(row=2, column=2)
 
 ########################################################################
@@ -430,7 +443,9 @@ passengers_disembark_flightID_entry.grid(row=1, column=1)
 passengers_disembark_frame_back_btn = tk.Button(passengers_disembark_frame, text="Back", command=lambda: people_page.tkraise(), width=15, height=5)
 passengers_disembark_frame_back_btn.grid(row=2, column=1)  
 
-passengers_disembark_frame_btn = tk.Button(passengers_disembark_frame, text="Commit", width=15, height=5)
+passengers_disembark_frame_btn = tk.Button(passengers_disembark_frame, text="Commit",command=lambda: passengers_disembark_function(
+    passengers_disembark_flightID_entry.get()
+), width=15, height=5)
 passengers_disembark_frame_btn.grid(row=2, column=2)
 ########################################################################
 
@@ -450,7 +465,9 @@ remove_passenger_role_personID_entry.grid(row=1, column=1)
 remove_passenger_role_frame_back_btn = tk.Button(remove_passenger_role_frame, text="Back", command=lambda: people_page.tkraise(), width=15, height=5)
 remove_passenger_role_frame_back_btn.grid(row=2, column=1)  
 
-remove_passenger_role_frame_btn = tk.Button(remove_passenger_role_frame, text="Commit", width=15, height=5)
+remove_passenger_role_frame_btn = tk.Button(remove_passenger_role_frame, text="Commit", command=lambda: remove_passenger_role_function(
+    remove_passenger_role_personID_entry.get()
+), width=15, height=5)
 remove_passenger_role_frame_btn.grid(row=2, column=2)
 ########################################################################
 
@@ -513,7 +530,11 @@ offer_flight_next_time_entry.grid(row=3, column=3)
 offer_flight_back_button = tk.Button(offer_flight_frame, text="Back", command=lambda: flights_page.tkraise(), width=15, height=5)
 offer_flight_back_button.grid(row=5, column=1)                                 
 
-offer_flight_frame_btn = tk.Button(offer_flight_frame, text="Commit", width=15, height=5)
+offer_flight_frame_btn = tk.Button(offer_flight_frame, text="Commit", command=lambda: offer_flight_function(
+    offer_flight_flightID_entry.get(), offer_flight_routeID_entry.get(), offer_flight_support_airline_entry.get(),
+    offer_flight_support_tail_entry.get(), offer_flight_progress_entry.get(), offer_flight_airplane_status_entry.get(), 
+    offer_flight_next_time_entry.get()
+), width=15, height=5)
 offer_flight_frame_btn.grid(row=5, column=2)
 ########################################################################
 
@@ -534,7 +555,9 @@ flight_landing_flightID_entry.grid(row=1, column=1)
 flight_landing_frame_back_btn = tk.Button(flight_landing_frame, text="Back", command=lambda: flights_page.tkraise(), width=15, height=5)
 flight_landing_frame_back_btn.grid(row=2, column=1)  
 
-flight_landing_frame_btn = tk.Button(flight_landing_frame, text="Commit", width=15, height=5)
+flight_landing_frame_btn = tk.Button(flight_landing_frame, text="Commit", command=lambda: flight_landing_function(
+    flight_landing_flightID_entry.get()
+), width=15, height=5)
 flight_landing_frame_btn.grid(row=2, column=2)
 ########################################################################
 
@@ -555,7 +578,9 @@ flight_takeoff_flightID_entry.grid(row=1, column=1)
 flight_takeoff_frame_back_btn = tk.Button(flight_takeoff_frame, text="Back", command=lambda: flights_page.tkraise(), width=15, height=5)
 flight_takeoff_frame_back_btn.grid(row=2, column=1)  
 
-flight_takeoff_frame_btn = tk.Button(flight_takeoff_frame, text="Commit", width=15, height=5)
+flight_takeoff_frame_btn = tk.Button(flight_takeoff_frame, text="Commit", command=lambda: flight_takeoff_function(
+    flight_takeoff_flightID_entry.get()
+), width=15, height=5)
 flight_takeoff_frame_btn.grid(row=2, column=2)
 ########################################################################
 
@@ -576,7 +601,9 @@ retire_flight_flightID_entry.grid(row=1, column=1)
 retire_flight_frame_back_btn = tk.Button(retire_flight_frame, text="Back", command=lambda: flights_page.tkraise(), width=15, height=5)
 retire_flight_frame_back_btn.grid(row=2, column=1)  
 
-retire_flight_frame_btn = tk.Button(retire_flight_frame, text="Commit", width=15, height=5)
+retire_flight_frame_btn = tk.Button(retire_flight_frame, text="Commit", command=lambda: retire_flight_function(
+    retire_flight_flightID_entry.get()
+), width=15, height=5)
 retire_flight_frame_btn.grid(row=2, column=2)
 ########################################################################
 
@@ -620,7 +647,10 @@ add_update_leg_arrival_entry.grid(row=2, column=3)
 add_update_leg_frame_back_btn = tk.Button(add_update_leg_frame, text="Back", command=lambda: routes_page.tkraise(), width=15, height=5)
 add_update_leg_frame_back_btn.grid(row=3, column=1)  
 
-add_update_leg_frame_btn = tk.Button(add_update_leg_frame, text="Commit", width=15, height=5)
+add_update_leg_frame_btn = tk.Button(add_update_leg_frame, text="Commit", command=lambda: add_update_leg_function(
+    add_update_leg_legID_entry.get(), add_update_leg_distance_entry.get(), add_update_leg_departure_entry.get(),
+    add_update_leg_arrival_entry.get()
+), width=15, height=5)
 add_update_leg_frame_btn.grid(row=3, column=2)
 ########################################################################
  

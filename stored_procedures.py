@@ -12,12 +12,7 @@ import tkinter as tk
 #1
 def add_airplane_function(airlineID, tail_num, seat_capacity, speed, locationID, 
                             plane_type, skids, propellers, jet_engines):
-
-
-
-
     try: 
-
 
         if airlineID == '':
             airlineID = None
@@ -84,6 +79,7 @@ def add_airport_function(airportID, airport_name, city, state, locationID):
                                     host='localhost', database='flight_management')
         # create a cursor object
         cursor = connection.cursor()
+
         # call the stored procedure
         cursor.callproc('add_airport', args=(airportID, airport_name, city, state, locationID))
         for result in cursor.stored_results():
@@ -160,8 +156,24 @@ def grant_pilot_license_function(personID, license):
                                     host='localhost', database='flight_management')
         # create a cursor object
         cursor = connection.cursor()
+
+        # get the metadata of the table before executing the stored procedure
+        cursor.execute("DESCRIBE pilot_licenses")
+        before_metadata = cursor.fetchall()
+
+
         # call the stored procedure
         cursor.callproc('grant_pilot_license', args=(personID, license))
+
+        # get the metadata of the table after executing the stored procedure
+        cursor.execute("DESCRIBE pilot_licenses")
+        after_metadata = cursor.fetchall()
+
+        if before_metadata == after_metadata:
+            raise mysql.connector.Error("No Changes")
+
+
+
         for result in cursor.stored_results():
             print(result.fetchall())        
     except Error as e:
@@ -176,23 +188,6 @@ def grant_pilot_license_function(personID, license):
 
 #5
 def offer_flight_function(flightID, routeID, support_airline, support_tail, progress, airplane_status, next_time):
-    if flightID == '':
-        flightID = None
-    if routeID == '':
-        routeID = None
-    if support_airline == '':
-        support_airline = None
-    if support_tail == '':
-        support_tail = None
-    if progress == '':
-        progress = None
-    else: 
-        progress = int(progress)
-    if airplane_status == '':
-        airplane_status = None
-    #need to check what the data type is for time; currently just set to string
-    if next_time == '': 
-        next_time = None
 
     try: 
         if flightID == '':
@@ -888,7 +883,6 @@ def route_summary_function(frame):
 def alternative_airports_function(frame):
     
     try: 
-
         # establish database connection
         connection = mysql.connector.connect(user='root', password='Deb@tersql2003',
                                     host='localhost', database='flight_management')
