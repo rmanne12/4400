@@ -440,8 +440,21 @@ def passengers_disembark_function(flightID):
                                     host='localhost', database='flight_management')
         # create a cursor object
         cursor = connection.cursor()
+        # get the metadata of the table before executing the stored procedure
+        cursor.execute("DESCRIBE passenger")
+        before_metadata = cursor.fetchall()
+
+
         # call the stored procedure
         cursor.callproc('passengers_disembark', args=(flightID))
+
+        # get the metadata of the table after executing the stored procedure
+        cursor.execute("DESCRIBE passenger")
+        after_metadata = cursor.fetchall()
+
+        if before_metadata == after_metadata:
+            raise mysql.connector.Error("No Changes")
+        
         for result in cursor.stored_results():
             print(result.fetchall())        
     except Error as e:
@@ -467,8 +480,21 @@ def assign_pilot_function(flightID, personID):
                                     host='localhost', database='flight_management')
         # create a cursor object
         cursor = connection.cursor()
+        # get the metadata of the table before executing the stored procedure
+        cursor.execute("DESCRIBE pilot")
+        before_metadata = cursor.fetchall()
+
+
         # call the stored procedure
         cursor.callproc('assign_pilot', args=(flightID, personID))
+
+        # get the metadata of the table after executing the stored procedure
+        cursor.execute("DESCRIBE pilot")
+        after_metadata = cursor.fetchall()
+
+        if before_metadata == after_metadata:
+            raise mysql.connector.Error("No Changes")
+        
         for result in cursor.stored_results():
             print(result.fetchall())        
     except Error as e:
@@ -492,8 +518,22 @@ def recycle_crew_function(flightID):
                                     host='localhost', database='flight_management')
         # create a cursor object
         cursor = connection.cursor()
+
+        # get the metadata of the table before executing the stored procedure
+        cursor.execute("DESCRIBE person")
+        before_metadata = cursor.fetchall()
+
+
         # call the stored procedure
         cursor.callproc('recycle_crew', args=(flightID))
+
+        # get the metadata of the table after executing the stored procedure
+        cursor.execute("DESCRIBE person")
+        after_metadata = cursor.fetchall()
+
+        if before_metadata == after_metadata:
+            raise mysql.connector.Error("No Changes")
+        
         for result in cursor.stored_results():
             print(result.fetchall())        
     except Error as e:
@@ -517,8 +557,22 @@ def retire_flight_function(flightID):
                                     host='localhost', database='flight_management')
         # create a cursor object
         cursor = connection.cursor()
+
+        # get the metadata of the table before executing the stored procedure
+        cursor.execute("DESCRIBE flight")
+        before_metadata = cursor.fetchall()
+
+
         # call the stored procedure
         cursor.callproc('retire_flight', args=(flightID))
+
+        # get the metadata of the table after executing the stored procedure
+        cursor.execute("DESCRIBE flight")
+        after_metadata = cursor.fetchall()
+
+        if before_metadata == after_metadata:
+            raise mysql.connector.Error("No Changes")
+        
         for result in cursor.stored_results():
             print(result.fetchall())        
     except Error as e:
@@ -542,8 +596,23 @@ def remove_passenger_role_function(personID):
                                     host='localhost', database='flight_management')
         # create a cursor object
         cursor = connection.cursor()
+        
+        # get the metadata of the table before executing the stored procedure
+        cursor.execute("DESCRIBE passenger")
+        before_metadata = cursor.fetchall()
+
+
         # call the stored procedure
         cursor.callproc('remove_passenger_role', args=(personID))
+
+        # get the metadata of the table after executing the stored procedure
+        cursor.execute("DESCRIBE passenger")
+        after_metadata = cursor.fetchall()
+
+        if before_metadata == after_metadata:
+            raise mysql.connector.Error("No Changes")
+        
+        
         for result in cursor.stored_results():
             print(result.fetchall())        
     except Error as e:
@@ -567,8 +636,23 @@ def remove_pilot_role_function(personID):
                                     host='localhost', database='flight_management')
         # create a cursor object
         cursor = connection.cursor()
+
+        # get the metadata of the table before executing the stored procedure
+        cursor.execute("DESCRIBE pilot_licenses")
+        before_metadata = cursor.fetchall()
+
+
         # call the stored procedure
         cursor.callproc('remove_pilot_role', args=(personID))
+
+        # get the metadata of the table after executing the stored procedure
+        cursor.execute("DESCRIBE pilot_licenses")
+        after_metadata = cursor.fetchall()
+
+        if before_metadata == after_metadata:
+            raise mysql.connector.Error("No Changes")
+        
+
         for result in cursor.stored_results():
             print(result.fetchall())        
     except Error as e:
