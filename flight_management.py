@@ -244,7 +244,7 @@ grant_pilot_license_license_entry.grid(row=2, column=1)
 grant_pilot_license_frame_back_btn = tk.Button(grant_pilot_license_frame, text="Back", command=lambda: pilots_page.tkraise(), width=15, height=5)
 grant_pilot_license_frame_back_btn.grid(row=3, column=1)  
 
-grant_pilot_license_frame_btn = tk.Button(grant_pilot_license_frame, text="Commit", width=15, height=5)
+grant_pilot_license_frame_btn = tk.Button(grant_pilot_license_frame, text="Commit",  width=15, height=5)
 grant_pilot_license_frame_btn.grid(row=3, column=2) 
 ########################################################################
 
@@ -645,7 +645,7 @@ start_route_frame_legID_entry.grid(row=2, column=1)
 add_update_leg_frame_back_btn = tk.Button(start_route_frame, text="Back", command=lambda: routes_page.tkraise(), width=15, height=5)
 add_update_leg_frame_back_btn.grid(row=3, column=1)  
 
-add_update_leg_frame_btn = tk.Button(start_route_frame, text="Commit", width=15, height=5)
+add_update_leg_frame_btn = tk.Button(start_route_frame, text="Commit", command=lambda:  start_route_function(start_route_frame_routeID_entry.get(), start_route_frame_legID_entry.get()), width=15, height=5)
 add_update_leg_frame_btn.grid(row=3, column=2)
 ########################################################################
 
@@ -671,7 +671,7 @@ extend_route_frame_legID_entry.grid(row=2, column=1)
 extend_route_frame_back_btn = tk.Button(extend_route_frame, text="Back", command=lambda: routes_page.tkraise(), width=15, height=5)
 extend_route_frame_back_btn.grid(row=3, column=1)  
 
-extend_route_frame_btn = tk.Button(extend_route_frame, text="Commit", width=15, height=5)
+extend_route_frame_btn = tk.Button(extend_route_frame, text="Commit", command=lambda: extend_route_function(extend_route_frame_routeID_entry.get(), extend_route_frame_legID_entry.get()), width=15, height=5)
 extend_route_frame_btn.grid(row=3, column=2)
 
 ########################################################################
@@ -732,7 +732,7 @@ purchase_ticket_and_seat_frame_seat_number_entry.grid(row=3, column=3)
 purchase_ticket_and_seat_frame_back_button = tk.Button(purchase_ticket_and_seat_frame, text="Back", command=lambda: tickets_page.tkraise(), width=15, height=5)
 purchase_ticket_and_seat_frame_back_button.grid(row=4, column=1)                                 
 
-purchase_ticket_and_seat_frame_btn = tk.Button(purchase_ticket_and_seat_frame, text="Commit", width=15, height=5)
+purchase_ticket_and_seat_frame_btn = tk.Button(purchase_ticket_and_seat_frame, text="Commit", command=lambda: purchase_ticket_and_seat_function(purchase_ticket_and_seat_frame_ticketID_entry.get(), purchase_ticket_and_seat_frame_cost_entry.get(), purchase_ticket_and_seat_frame_carrier_entry.get(), purchase_ticket_and_seat_frame_customer_entry.get(),purchase_ticket_and_seat_frame_deplane_at_entry.get(), purchase_ticket_and_seat_frame_seat_number_entry.get()), width=15, height=5)
 purchase_ticket_and_seat_frame_btn.grid(row=4, column=2)
 
 ########################################################################
@@ -782,7 +782,7 @@ add_airport_locationID_entry.grid(row=2, column=3)
 add_airport_frame_back_button = tk.Button(add_airport_frame, text="Back", command=lambda: airports_page.tkraise(), width=15, height=5)
 add_airport_frame_back_button.grid(row=4, column=1)                                 
 
-add_airport_frame_btn = tk.Button(add_airport_frame, text="Commit", width=15, height=5)
+add_airport_frame_btn = tk.Button(add_airport_frame, text="Commit", command=lambda: add_airport_function(add_airport_airportID_entry.get(), add_airport_airport_name_entry.get(), add_airport_city_entry.get(), add_airport_state_entry.get(),add_airport_locationID_entry.get()), width=15, height=5)
 add_airport_frame_btn.grid(row=4, column=2)
 ########################################################################
 
@@ -953,8 +953,10 @@ simulation_cycle_frame_title.grid(row=0, column=2)
 simulation_cycle_frame_back_button = tk.Button(simulation_cycle_frame, text="Back", command=lambda: views_simulation_page.tkraise(), width=15, height=5)
 simulation_cycle_frame_back_button.grid(row=1, column=1)                                 
 
-simulation_cycle_frame_btn = tk.Button(simulation_cycle_frame, text="Commit", width=15, height=5)
+simulation_cycle_frame_btn = tk.Button(simulation_cycle_frame, text="Commit", command=lambda: simulation_cycle_function(), width=15, height=5)
 simulation_cycle_frame_btn.grid(row=1, column=2)
+
+
 
 
 ########################################################################
